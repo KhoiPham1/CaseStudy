@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Note</title>
+</head>
+<body>
+<a href="/create-note">Create new note</a>
+    <h1>Các ghi chú</h1>
+    <tr>
+        <select>
+        <option>Thể loại</option>
+        </select>
+        <input type="text"/>
+        <input type="submit" value="Tìm"/>
+    </tr>
+    <form th:action="@{/note}" th:object="${listnote}" method="post">
+    <table border="1">
+        <tr>
+            <th>STT</th>
+            <th>Tiêu đề</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
+        </tr>
+        <th:block th:each="note:${listnote}">
+            <tr>
+                <td th:text="${note.typeId}"></td>
+                <td th:text="${note.title}"></td>
+                <td><a th:href="@{/edit-note/__${note.typeId}__}">Sửa</a></td>
+                <td><a th:href="@{/delete-note/__${note.typeId}__}">Xóa</a></td>
+            </tr>
+        </th:block>
+    </table>
+</form>
+</body>
+</html>

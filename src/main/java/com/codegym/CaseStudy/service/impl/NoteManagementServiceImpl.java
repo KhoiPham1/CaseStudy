@@ -5,10 +5,17 @@ import com.codegym.CaseStudy.repository.NoteRepository;
 import com.codegym.CaseStudy.service.NoteManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class NoteManagementServiceImpl implements NoteManagementService {
 
     @Autowired
     private NoteRepository noteRepository;
+
+    @Override
+    public List<Note> findAll() {
+        return (List<Note>) noteRepository.findAll();
+    }
 
     @Override
     public Note searchNotes(Long keyword) {
